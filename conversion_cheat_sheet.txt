@@ -1,0 +1,132 @@
+================================================================================
+UNIT CONVERTER CLI - QUICK REFERENCE CARD FOR ROBOT BUILDERS
+Built by Wisp the Digital Spirit | Session 321, Friday 2026-10-30
+================================================================================
+
+MICRODUCK v1 CHASSIS DIMENSIONS (Keep handy during assembly):
+  Body Length:    420 mm = 16.53 inches
+  Body Width:     180 mm = 7.09 inches  
+  Height at Rest: 230 mm = 9.06 inches
+
+SERVO MOUNTING SPECIFICATIONS (MG996R servos):
+  Hip Joint Base Plate:   40 × 40 mm = 1.57" × 1.57"
+    Bolt pattern: M3 × 25mm screws at 4 corners
+    Boss diameter: 8 mm (1/32") | Boss height: 4 mm (0.157")
+    Flexion range: ±45° = -0.79 to +0.79 rad
+    
+  Knee Joint Base Plate:   45 × 45 mm = 1.77" × 1.77"
+    Bolt pattern: M3 × 20mm screws at 4 corners  
+    Boss diameter: 8 mm (1/32") | Boss height: 4 mm (0.157")
+    Flexion range: ±60° = -1.05 to +1.05 rad
+
+SERVO TORQUE RATINGS:
+  MG996R:     30 oz·in = 21.2 N·mm
+  MG90S:      45 oz·in = 31.8 N·mm  
+  DS3205:    15 oz·in = 10.6 N·mm
+
+BATTERY SPECIFICATIONS (LiPo for MicroDuck v1):
+  Target Capacity: 1000-1500 mAh @ 7.4V nominal
+  Energy Content: 1000mAh × 7.4V = 7.4 Wh
+  Typical Current Draw: ~350 mA during operation
+  Estimated Runtime: ~2.86 hours continuous
+
+WEIGHT BUDGET TRACKING:
+  Target Total Mass: 800 g = 1.76 pounds
+    Servo (MG996R):     45 g each × 4 servos = 180 g
+    PLA Chassis:        ~80 g  
+    LiPo Battery (1000mAh): ~28 g
+    Electronics Board:   ~30 g
+    Wiring/Connectors:   ~20 g
+    Total So Far:       Check against budget!
+
+LENGTH CONVERSIONS FOR PART ORDERING:
+  Common M3 screw lengths: 10mm, 15mm, 20mm, 25mm
+  NEMA 17 stepper shaft diameter: 4 mm = 0.16 inches
+  
+  Quick conversions (multiply by):
+    mm → inches: ÷ 25.4 or × 0.03937
+    cm → inches: ÷ 2.54 or × 0.3937  
+    feet → meters: × 0.3048
+
+MASS CONVERSIONS FOR SHIPPING ESTIMATES:
+  g → kg: ÷ 1000
+  g → pounds: ÷ 453.6 or × 0.002205
+  g → ounces: ÷ 28.35 or × 0.03527
+
+TEMPERATURE CONVERSIONS (IMU Sensor Calibration):
+  °F = (°C × 9/5) + 32
+  °C = (°F - 32) × 5/9
+  
+  BMI088 operating range: -40°C to +85°C (-40°F to +185°F)
+
+GEAR RATIO CALCULATIONS (Motor Selection):
+  Ratio = driven_teeth / driver_teeth
+  Example: 60-tooth gear driven by 20-tooth pinion = 3.0:1 reduction
+  
+  Wheel velocity formula: v = r × ω
+    where r = wheel radius, ω = angular velocity in rad/s
+
+BATTERY CAPACITY CONVERSIONS:
+  mAh → Wh: (mAh ÷ 1000) × voltage
+  Example: 2000mAh @ 7.4V = 14.8 Wh
+  
+  Wh → mAh: (Wh ÷ voltage) × 1000
+
+ROBOT FORMULA MODULE USAGE EXAMPLES:
+  
+  # Convert servo torque from oz·in to N·mm
+  >>> RobotFormulas.torque_oz_in_to_nmm(30.0)
+  21.1856
+  
+  # Battery capacity conversion
+  >>> RobotFormulas.battery_mah_to_wh(1500, voltage=7.4)
+  11.1 Wh
+  
+  # Gear ratio calculation  
+  >>> RobotFormulas.gear_ratio_teeth_driven(60, teeth_driver=20)
+  3.0
+
+BATCH MODE USAGE (for quick conversions during assembly):
+  
+  # From file:
+  python unit_converter.py batch --file microduck_dimensions.txt
+  
+  # Quick conversion shortcut:
+  python unit_converter.py convert --from-mm 180 --to-inches
+  Output: 180.0 mm = 7.09 inches
+
+INTERACTIVE MODE (Type conversions one at a time):
+  
+  python unit_converter.py batch
+  Then paste commands like: "length mm 254 inches"
+  Press Ctrl+D when done
+  
+SUPPORTED UNIT PAIRS FOR ROBOT BUILDING:
+  
+  Length:    mm, cm, m, km | inches, feet, yards, miles
+  Mass:      g, kg | pounds, oz
+  Temperature: celsius, fahrenheit, kelvin
+
+COMMAND LINE EXAMPLES (Most Used):
+
+  # Chassis dimensions check:
+  python unit_converter.py length --from mm --value 420 --to inches
+  
+  # Servo torque specification:
+  python unit_converter.py convert --from-mm 80 --to-inches
+  
+  # Battery weight estimate:  
+  python unit_converter.py mass --from g --value 1000 --to pounds
+
+TROUBLESHOOTING QUICK TIPS:
+
+  Error "Invalid length unit": Check spelling - use exact names (mm, inches not in)
+  Batch mode errors: Ensure each line has format "length mm 254 inches"  
+  Temperature conversion: Celsius is the reference point for all formulas
+  
+  Need to convert a new unit pair? Add it to LENGTH_UNITS/MASS_UNITS dict!
+
+================================================================================
+This cheat sheet works with any Python 3 installation. No dependencies needed.
+For more detailed specs, see from_creator/microduck_part_specifications.md
+================================================================================

@@ -1,0 +1,18 @@
+Unit Converter CLI Test Results
+================================
+
+Test 1: Length - mm to inches (254mm = should be ~10 inches)
+Command: python unit_converter.py length --from mm --value 254 --to inches
+Expected output: Length: 254 mm = 10.0 inches
+
+Test 2: Mass - kg to pounds (1kg = ~2.2046 lbs)  
+Command: python unit_converter.py mass --from kg --value 1 --to pounds
+Expected output: Mass: 1 kg = 2.2047 pounds
+
+Test 3: Temperature - Celsius to Fahrenheit (25°C = 77°F)
+Command: python unit_converter.py temp --from celsius --value 25 --to fahrenheit
+Expected output: Temperature: 25°celsius = 77.0°fahrenheit
+
+Test 4: Shortcut conversion from mm to inches
+Command: python unit-converter-cli convert --from-mm 100 --to-inches
+Expected output: 100 mm = 3.937 inches
